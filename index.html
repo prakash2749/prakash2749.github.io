@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liora - GBA Emulator Pro | Developer</title>
+    <meta name="description" content="Liora - GBA Emulator Pro. A premium Game Boy Advance emulator for Android by Prakash Makwana.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0a0f;
+            color: #e4e4e8;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .bg-glow {
+            position: fixed;
+            top: -40%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(99, 66, 255, 0.12) 0%, rgba(99, 66, 255, 0.03) 40%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .logo {
+            width: 88px;
+            height: 88px;
+            background: linear-gradient(135deg, #6342ff 0%, #a855f7 50%, #ec4899 100%);
+            border-radius: 22px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 28px;
+            box-shadow: 0 8px 40px rgba(99, 66, 255, 0.3);
+            letter-spacing: -2px;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #ffffff 30%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #8b8b9e;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 48px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(99, 66, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .feature-icon {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+        }
+
+        .feature-card h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #f0f0f5;
+        }
+
+        .feature-card p {
+            font-size: 0.82rem;
+            color: #6b6b80;
+            line-height: 1.5;
+        }
+
+        .cta {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .play-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #6342ff, #a855f7);
+            color: white;
+            text-decoration: none;
+            padding: 16px 36px;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 24px rgba(99, 66, 255, 0.3);
+        }
+
+        .play-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(99, 66, 255, 0.4);
+        }
+
+        .privacy-section {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 48px;
+        }
+
+        .privacy-section h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #f0f0f5;
+        }
+
+        .privacy-section p {
+            font-size: 0.9rem;
+            color: #8b8b9e;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .privacy-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .privacy-section li {
+            font-size: 0.9rem;
+            color: #8b8b9e;
+            line-height: 1.7;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .privacy-section li::before {
+            content: '•';
+            position: absolute;
+            left: 4px;
+            color: #6342ff;
+        }
+
+        footer {
+            text-align: center;
+            padding: 32px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #4a4a5e;
+            font-size: 0.82rem;
+        }
+
+        footer a {
+            color: #6342ff;
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            .features { grid-template-columns: 1fr; }
+            h1 { font-size: 1.8rem; }
+            .container { padding: 48px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-glow"></div>
+    <div class="container">
+        <div class="hero">
+            <div class="logo">L</div>
+            <h1>Liora — GBA Emulator Pro</h1>
+            <p class="subtitle">A premium Game Boy Advance emulator for Android. Fast, beautiful, and built for the games you love.</p>
+        </div>
+
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Native Performance</h3>
+                <p>Powered by mGBA core with hardware-accelerated rendering for buttery smooth gameplay.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎮</div>
+                <h3>Custom Touch Controls</h3>
+                <p>Fully customizable on-screen controls with haptic feedback and gesture shortcuts.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔗</div>
+                <h3>Link Cable Support</h3>
+                <p>Local and remote multiplayer link cable emulation for trading and battling.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">☁️</div>
+                <h3>Cloud Save Sync</h3>
+                <p>Google Drive integration keeps your save data safe across all your devices.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>Video Filters</h3>
+                <p>CRT scanlines, color correction, brightness controls, and shader effects.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔧</div>
+                <h3>Cheat Engine</h3>
+                <p>Built-in GameShark, Action Replay, and CodeBreaker cheat code support.</p>
+            </div>
+        </div>
+
+        <div class="cta">
+            <a href="https://play.google.com/store/apps/details?id=dev.gbadroid" class="play-button">
+                ▶ Get it on Google Play
+            </a>
+        </div>
+
+        <div class="privacy-section" id="privacy">
+            <h2>Privacy Policy</h2>
+            <p>Liora - GBA Emulator Pro ("the App") is developed by Prakash Makwana. This privacy policy explains how we handle your data.</p>
+            <p><strong>Data We Collect:</strong></p>
+            <ul>
+                <li>The App does not collect, store, or transmit any personal data to external servers.</li>
+                <li>ROM files and save data are stored locally on your device only.</li>
+                <li>If you enable Google Drive sync, save data is stored in your personal Google Drive account. We do not have access to your Google Drive data.</li>
+                <li>The App uses Google AdMob for advertising. AdMob may collect device identifiers and usage data as described in Google's privacy policy.</li>
+                <li>The App uses Google Play Billing for in-app purchases. Purchase data is handled by Google Play.</li>
+            </ul>
+            <p><strong>Third-Party Services:</strong></p>
+            <ul>
+                <li>Google AdMob — <a href="https://policies.google.com/privacy">Privacy Policy</a></li>
+                <li>Google Play Services — <a href="https://policies.google.com/privacy">Privacy Policy</a></li>
+            </ul>
+            <p><strong>Contact:</strong> For any questions about this privacy policy, contact us at prakash2749@gmail.com.</p>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Prakash Makwana. All rights reserved.</p>
+            <p style="margin-top: 8px;"><a href="#privacy">Privacy Policy</a></p>
+        </footer>
+    </div>
+</body>
+</html>
